@@ -73,7 +73,7 @@ class Hex
 
     public function __toString()
     {
-        return sprintf("%2X%2X%2X", $this->red, $this->green, $this->blue);
+        return sprintf("%2s%2s%2s", $this->red, $this->green, $this->blue);
     }
 
     /**

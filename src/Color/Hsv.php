@@ -51,7 +51,7 @@ class Hsv
 
         $this->saturation = ($max === 0) ? 0 : 1 - $min / $max;
         $this->value = $max;
-
+        
         return $this;
     }
 }

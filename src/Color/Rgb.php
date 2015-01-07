@@ -53,7 +53,7 @@ class Rgb
     public function fromHsv(Hsv $hsv)
     {
         if ($hsv->saturation === 0) {
-            return new Rgb($v * 255,$v * 255,$v * 255);
+            return new Rgb($hsv->value * 255,$hsv->value * 255,$hsv->value * 255);
         } else {
             $hsv->hue = ($hsv->hue >= 0) ? $hsv->hue % 360 / 360 : $hsv->hue % 360 / 360 + 1;
             $var_h = $hsv->hue * 6;
@@ -67,22 +67,22 @@ class Rgb
 
             switch($i){
                 case 0:
-                    return new Rgb(round($hsv->value * 255), round($t * 255), round($p * 255));
+                    return new Rgb((int)round($hsv->value * 255), (int)round($t * 255), (int)round($p * 255));
                     break;
                 case 1:
-                    return new Rgb(round($q * 255), round($hsv->value * 255), round($p * 255));
+                    return new Rgb((int)round($q * 255), (int)round($hsv->value * 255), (int)round($p * 255));
                     break;
                 case 2:
-                    return new Rgb(round($p * 255), round($hsv->value * 255), round($t * 255));
+                    return new Rgb((int)round($p * 255), (int)round($hsv->value * 255), (int)round($t * 255));
                     break;
                 case 3:
-                    return new Rgb(round($p * 255), round($q * 255), round($hsv->value * 255));
+                    return new Rgb((int)round($p * 255), (int)round($q * 255), (int)round($hsv->value * 255));
                     break;
                 case 4:
-                    return new Rgb(round($t * 255), round($p * 255), round($hsv->value * 255));
+                    return new Rgb((int)round($t * 255), (int)round($p * 255), (int)round($hsv->value * 255));
                     break;
                 default:
-                    return new Rgb(round($hsv->value * 255), round($p * 255), round($q * 255));
+                    return new Rgb((int)round($hsv->value * 255), (int)round($p * 255), (int)round($q * 255));
                     break;
             }
         }
@@ -93,6 +93,6 @@ class Rgb
      */
     public static function isRange($value)
     {
-        return (0 <= $value && $value <= 255);
+        return (is_int($value) && 0 <= (int)$value && (int)$value <= 255);
     }
 }
