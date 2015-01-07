@@ -5,8 +5,12 @@
 namespace Color;
 
 use Exception;
+
 class Rgb
 {
+    /**
+     * @var integer
+     */
     public $red;
     public $green;
     public $blue;
@@ -29,7 +33,10 @@ class Rgb
         }
         $this->$name = intval($value);
     }
-
+    /**
+     * @param Hex Object
+     * @return this
+     */
     public function fromHex(Hex $hex)
     {
         $this->red = hexdec($hex->red);
@@ -39,6 +46,10 @@ class Rgb
         return $this;
     }
 
+    /**
+     * @param Hsv Object
+     * @return Rgb Object
+     */
     public function fromHsv(Hsv $hsv)
     {
         if ($hsv->saturation === 0) {
@@ -76,7 +87,10 @@ class Rgb
             }
         }
     }
-
+    /**
+     * @param integer $value
+     * @return boolean
+     */
     public static function isRange($value)
     {
         return (0 <= $value && $value <= 255);
