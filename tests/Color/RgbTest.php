@@ -47,4 +47,20 @@ class RgbTest extends PHPUnit_Framework_TestCase{
     public function testisRange() {
         $this->assertNotTrue(Color\Rgb::isRange("FF"));
     }
+
+    public function testFromHsvCaseHueValiation() {
+        $rgb = new Color\Rgb;
+        $rgbString1 = $rgb->fromHsv(new Color\Hsv(0,1,1));
+        $rgbString2 = $rgb->fromHsv(new Color\Hsv(60,1,1));
+        $rgbString3 = $rgb->fromHsv(new Color\Hsv(120,1,1));
+        $rgbString4 = $rgb->fromHsv(new Color\Hsv(180,1,1));
+        $rgbString5 = $rgb->fromHsv(new Color\Hsv(240,1,1));
+        $rgbString6 = $rgb->fromHsv(new Color\Hsv(300,1,1));
+        $this->assertEquals("255,0,0",sprintf("%s",$rgbString1));
+        $this->assertEquals("255,255,0",sprintf("%s",$rgbString2));
+        $this->assertEquals("0,255,0",sprintf("%s",$rgbString3));
+        $this->assertEquals("0,255,255",sprintf("%s",$rgbString4));
+        $this->assertEquals("0,0,255",sprintf("%s",$rgbString5));
+        $this->assertEquals("255,0,255",sprintf("%s",$rgbString6));
+    }
 }

@@ -33,6 +33,10 @@ class Rgb
         }
         $this->$name = intval($value);
     }
+
+    public function __toString() {
+        return sprintf("%d,%d,%d",$this->red,$this->green,$this->blue);
+    }
     /**
      * @param Hex Object
      * @return this
@@ -42,7 +46,6 @@ class Rgb
         $this->red = hexdec($hex->red);
         $this->green = hexdec($hex->green);
         $this->blue = hexdec($hex->blue);
-
         return $this;
     }
 
@@ -64,7 +67,6 @@ class Rgb
             $p = $hsv->value * ( 1 - $hsv->saturation );
             $q = $hsv->value * ( 1 - $hsv->saturation * $f );
             $t = $hsv->value * ( 1 - $hsv->saturation * ( 1 - $f ) );
-
             switch($i){
                 case 0:
                     return new Rgb((int)round($hsv->value * 255), (int)round($t * 255), (int)round($p * 255));

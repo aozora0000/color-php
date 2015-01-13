@@ -34,7 +34,7 @@ class Hsv
         $b = $rgb->blue / 255;
         $max = max($r, $g, $b);
         $min = min($r, $g, $b);
-        switch (true) {
+        switch ($max) {
             case ($max === $min):
                 $this->hue = 0;
                 break;
@@ -51,7 +51,7 @@ class Hsv
 
         $this->saturation = ($max === 0) ? 0 : 1 - $min / $max;
         $this->value = $max;
-        
+
         return $this;
     }
 }
